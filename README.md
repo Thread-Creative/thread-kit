@@ -14,7 +14,7 @@ Add it as a plugin in `sanity.config.ts` (or .js):
 
 ```ts
 import {defineConfig} from 'sanity'
-import {myPlugin} from 'sanity-plugin-thread-kit'
+import {myPlugin} from 'thread-kit'
 
 export default defineConfig({
   //...
