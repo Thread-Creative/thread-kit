@@ -1,4 +1,4 @@
-# thread-kit
+# @madebythread/thread-kit
 
 A collection of opinionated plugins, fields, & components for building in Sanity Studio. Some plugins have been adapted from various users to better fit our needs.
 
@@ -56,7 +56,7 @@ export default defineConfig({
 })
 ```
 
-#### defineSlug
+### defineSlug
 This is a slug input field that allows for folder a prefix. 
 This component is dapted from hdoro's [slug plugin](https://github.com/hdoro/sanity-plugin-prefixed-slug) 
 
@@ -75,7 +75,7 @@ defineSlug({
 }),
 ```
 
-#### Forms
+### Forms
 
 _Coming Soon_
 
