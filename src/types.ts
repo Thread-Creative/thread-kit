@@ -3,7 +3,7 @@ import {ObjectSchemaType, SlugDefinition, SlugInputProps, SlugOptions} from 'san
 interface ExtendedSlugOptions extends SlugOptions {
   url: string
   folder?: string
-  locked: boolean | (({document}: any) => boolean)
+  locked?: boolean | (({document}: any) => boolean)
 }
 
 export type SlugParams = Omit<SlugDefinition, 'type' | 'options' | 'name'> & {
