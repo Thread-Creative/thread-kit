@@ -3,14 +3,14 @@ import { defineField, FieldDefinition } from 'sanity'
 
 type Props = {
   paragraph: string
-  lockedSlugs: readonly string[];
+  lockedSlugs?: readonly string[];
   title?: string
   link?: string
   checkSlug?: boolean
 }
 
 export function defineNote(schema: Props): FieldDefinition<'string'> {
-  const {title='Note', paragraph, link, checkSlug, lockedSlugs} = schema
+  const {title='Note', paragraph, link, checkSlug=false, lockedSlugs} = schema
   return defineField({
     title,
     description: <GlobalNote paragraph={paragraph} href={link} />,
@@ -21,7 +21,7 @@ export function defineNote(schema: Props): FieldDefinition<'string'> {
       icon: BulbOutlineIcon,
       tone: 'caution',
     },
-    hidden: ({document}: {document: any}) => !checkSlug ? false : (typeof document?.slug?.current === 'string' ? !lockedSlugs.includes(document.slug.current) : true),
+    hidden: ({document}: {document: any}) => !checkSlug ? false : (typeof document?.slug?.current === 'string' ? !lockedSlugs?.includes(document.slug.current) : true),
 
   })
 }
