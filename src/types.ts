@@ -58,3 +58,13 @@ export type LinkValue = {
   _type?: 'link'
   text?: string
 } & (InternalLink | ExternalLink | EmailLink | PhoneLink)
+
+
+export type SanityLink = {
+  text: string;
+  link: string;
+  newTab?: boolean;
+  parameters?: string;
+  anchor?: string;
+  type?: string;
+};

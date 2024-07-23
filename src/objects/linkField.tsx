@@ -3,6 +3,7 @@ import {defineField, definePlugin, defineType, type ObjectInputProps} from 'sani
 import type {LinkFieldPluginOptions, LinkValue} from '../types'
 import {LinkTypeInput} from '../components/LinkTypeInput'
 import {LinkInput} from '../components/LinkInput'
+import { LinkIcon } from 'lucide-react'
 
 export const linkField = definePlugin<LinkFieldPluginOptions | void>((props) => {
   const {
@@ -15,6 +16,7 @@ export const linkField = definePlugin<LinkFieldPluginOptions | void>((props) => 
     name: 'link',
     title: 'Link',
     type: 'object',
+    icon: LinkIcon,
     fieldsets: [
       {
         name: 'advanced',
