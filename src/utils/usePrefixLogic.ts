@@ -18,8 +18,8 @@ export function usePrefixLogic(props: SlugInputProps) {
   const [folder, setFolder] = useState<string | undefined>()
   const finalPrefix =
     folder === undefined
-      ? undefined
-      : `${folder}${
+      ? '/'
+      : `${folder.startsWith('/') ? '' : '/'}${folder}${
           // Add a slash if the prefix doesn't end with one and doesn't contain a hash or a query string
           !folder?.endsWith('/') && !folder?.includes('#') && !folder?.includes('?')
             ? '/'
@@ -108,7 +108,7 @@ export function usePrefixLogic(props: SlugInputProps) {
     }
 
     // Finally, save this final slug to the document
-    updateValue("/"+finalSlug)
+    updateValue(finalSlug)
   }
 
   return {

@@ -56,13 +56,15 @@ export default function SlugInput(props: ExtendedSlugInputProps) {
   return (
     <Stack space={3}>
       <Text size={1}>
-        {baseUrl + (prefix == undefined ? '' : prefix)}
+        {/* Slice off initial slash  */}
+        {baseUrl + (prefix == undefined ? '' : prefix.slice(1))}
         {props.value?.current || ''}
       </Text>
       <Flex style={{gap: '0.5em'}} align="center">
         {prefix && prefix != '/' && (
           <UrlPrefix data-no-generate={!schemaType.options?.source}>
-            <Code size={2}>{prefix}</Code>
+            {/* Slice off initial slash  */}
+            <Code size={2}>{prefix.slice(1)}</Code>
           </UrlPrefix>
         )}
         <Box flex={3}>
