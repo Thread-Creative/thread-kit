@@ -108,7 +108,7 @@ export function usePrefixLogic(props: SlugInputProps) {
     }
 
     // Finally, save this final slug to the document
-    updateValue(finalSlug)
+    updateValue("/"+finalSlug)
   }
 
   return {
