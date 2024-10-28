@@ -43,6 +43,7 @@ export const FormBuilderPlugin = definePlugin<FormBuilderPluginOptions | void>((
 
   const fieldTypes = [...defaultFieldTypes, ...additionalFieldTypes]
   const selectPresets = [...defaultSelectPresets, ...additionalSelectPresets]
+  const enabledTypes = enableModule ? [formModule] : []
 
   return {
     name: 'form-builder',
@@ -57,7 +58,7 @@ export const FormBuilderPlugin = definePlugin<FormBuilderPluginOptions | void>((
         formRadioButton,
         formRadioButtonGroup,
         formGroup,
-        enableModule ? formModule : null,
+        ...enabledTypes,
       ],
     },
   }
