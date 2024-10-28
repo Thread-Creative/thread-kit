@@ -63,8 +63,13 @@ export type LinkValue = {
 export type SanityLink = {
   text: string;
   link: string;
-  newTab?: boolean;
+  blank?: boolean;
   parameters?: string;
   anchor?: string;
   type?: string;
 };
+
+export interface FormBuilderPluginOptions {
+  additionalFieldTypes?: {title: string, value: string}[];
+  additionalSelectPresets?: {title: string, value: string}[];
+}
