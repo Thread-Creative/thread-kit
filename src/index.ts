@@ -23,6 +23,7 @@ export {defineNote, defineSlug} from './utils'
 
 export const FormBuilderPlugin = definePlugin<FormBuilderPluginOptions | void>((props) => {
   const {
+    enableModule = false,
     additionalFieldTypes = [],
     additionalSelectPresets = [],
   } = props || {}
@@ -56,7 +57,7 @@ export const FormBuilderPlugin = definePlugin<FormBuilderPluginOptions | void>((
         formRadioButton,
         formRadioButtonGroup,
         formGroup,
-        formModule,
+        enableModule ? formModule : null,
       ],
     },
   }

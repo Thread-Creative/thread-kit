@@ -70,6 +70,7 @@ export type SanityLink = {
 };
 
 export interface FormBuilderPluginOptions {
+  enableModule?: boolean;
   additionalFieldTypes?: {title: string, value: string}[];
   additionalSelectPresets?: {title: string, value: string}[];
 }
