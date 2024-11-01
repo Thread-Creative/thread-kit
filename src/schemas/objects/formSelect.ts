@@ -38,7 +38,7 @@ export default (selectPresetOptions: Array<{title: string; value: string}>) =>
         of: [
           defineArrayMember({
             type: 'object',
-            name: 'option',
+            name: 'selectOption',
             icon: RiCheckLine,
             components: {item: DefaultToggleItem},
             fields: [
