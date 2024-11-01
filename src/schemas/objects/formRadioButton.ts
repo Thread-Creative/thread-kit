@@ -19,13 +19,6 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      title: 'Field Error Message',
-      name: 'fieldErrorMessage',
-      type: 'string',
-      description: 'Default error message if validation fails e.g. This field is required',
-      hidden: ({parent}: {parent: {required: boolean}}) => parent && !parent.required,
-    }),
-    defineField({
       title: 'Default checked',
       name: 'checkedDefault',
       description: 'Set this to be the initially checked',
