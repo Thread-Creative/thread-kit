@@ -28,6 +28,11 @@ export default defineType({
       type: 'text',
       rows: 3,
     }),
+    defineField({
+      name: 'formAction',
+      title: 'Form Action URL',
+      type: 'string',
+    }),
 
     // defineField({
     //   name: 'emailTo',

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.5] - 2024-11-01
+### Added
+- FormAction URL field
+
 ## [1.2.4] - 2024-11-01
 ### Added
 - Enable Module option for FormBuilder
