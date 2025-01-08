@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.2.7] - 2025-01-09
+## [1.3.0] - 2025-01-09
 ### Added
 - LinkField remove relative and helper text for https
 
