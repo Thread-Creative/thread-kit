@@ -70,11 +70,11 @@ export const linkField = definePlugin<LinkFieldPluginOptions | void>((props) => 
       defineField({
         name: 'url',
         type: 'url',
-        description: 'Link to an absolute URL to a page on another website.',
+        description: 'Link to an absolute URL to a page on another website. Must start with "https://"',
         validation: (rule) =>
           rule
             .uri({
-              allowRelative: true,
+              //allowRelative: true,
               scheme: ['https', 'http'],
             })
             .custom((value, context) => {

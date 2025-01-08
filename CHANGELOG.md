@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.7] - 2025-01-09
+### Added
+- LinkField remove relative and helper text for https
+
 ## [1.2.6] - 2024-11-04
 ### Added
 - FormAction URL field
