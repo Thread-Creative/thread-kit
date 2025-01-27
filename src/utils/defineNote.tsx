@@ -1,12 +1,13 @@
 import { BulbOutlineIcon } from '@sanity/icons'
 import { defineField, FieldDefinition } from 'sanity'
 
-type Props = FieldDefinition<'string'> & {
+type Props = {
   paragraph: string
   lockedSlugs?: readonly string[];
   title?: string
   link?: string
   checkSlug?: boolean;
+  group?: string | string[];
 }
 
 export function defineNote(schema: Props): FieldDefinition<'string'> {
