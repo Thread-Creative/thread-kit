@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] - 2025-01-28
+### Added
+- Spread standard schema props for NoteField
+
 ## [1.3.0] - 2025-01-09
 ### Added
 - LinkField remove relative and helper text for https
