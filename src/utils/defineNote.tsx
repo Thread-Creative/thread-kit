@@ -1,17 +1,18 @@
 import { BulbOutlineIcon } from '@sanity/icons'
 import { defineField, FieldDefinition } from 'sanity'
 
-type Props = {
+type Props = FieldDefinition<'string'> & {
   paragraph: string
   lockedSlugs?: readonly string[];
   title?: string
   link?: string
-  checkSlug?: boolean
+  checkSlug?: boolean;
 }
 
 export function defineNote(schema: Props): FieldDefinition<'string'> {
   const {title='Note', paragraph, link, checkSlug=false, lockedSlugs} = schema
   return defineField({
+    ...schema,
     title,
     description: <GlobalNote paragraph={paragraph} href={link} />,
     name: 'myCustomNote',
