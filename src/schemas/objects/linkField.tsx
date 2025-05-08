@@ -1,15 +1,16 @@
 import {defineField, definePlugin, defineType, type ObjectInputProps} from 'sanity'
 
 import type {LinkFieldPluginOptions, LinkValue} from '../../types'
-import { LinkTypeInput } from '../../components/LinkTypeInput'
+import {LinkTypeInput} from '../../components/LinkTypeInput'
 import {LinkInput} from '../../components/LinkInput'
-import { LinkIcon } from '@sanity/icons'
+import {LinkIcon} from '@sanity/icons'
 
 export const linkField = definePlugin<LinkFieldPluginOptions | void>((props) => {
   const {
     linkableSchemaTypes = ['page'],
     enableLinkParameters = true,
     enableAnchorLinks = true,
+    customFields = [],
   } = props || {}
 
   const linkType = {
@@ -32,7 +33,8 @@ export const linkField = definePlugin<LinkFieldPluginOptions | void>((props) => 
       defineField({
         name: 'text',
         type: 'string',
-        validation: (rule) => rule.required(),
+        // validation is handled in the LinkInput component
+        validation: (Rule) => Rule.required(),
       }),
 
       defineField({
@@ -70,7 +72,8 @@ export const linkField = definePlugin<LinkFieldPluginOptions | void>((props) => 
       defineField({
         name: 'url',
         type: 'url',
-        description: 'Link to an absolute URL to a page on another website. Must start with "https://"',
+        description:
+          'Link to an absolute URL to a page on another website. Must start with "https://"',
         validation: (rule) =>
           rule
             .uri({
@@ -216,7 +219,46 @@ export const linkField = definePlugin<LinkFieldPluginOptions | void>((props) => 
               : []),
           ]
         : []),
+
+      ...customFields,
     ],
+
+    preview: {
+      select: {
+        text: 'text',
+        internalLink: 'internalLink',
+        url: 'url',
+        email: 'email',
+        phone: 'phone',
+        type: 'type',
+      },
+      prepare({text, internalLink, url, email, phone, type}: any) {
+        const title = text?.startsWith('_') ? 'Link' : text
+        let subtitle = ''
+        switch (type) {
+          case 'internal':
+            subtitle = internalLink?.name || 'Internal Link'
+            break;
+          case 'external':
+            subtitle = url || 'External Link'
+            break;
+          case 'email':
+            subtitle = email || 'Email Link'
+            break;
+          case 'phone':
+            subtitle = phone || 'Phone'
+            break;
+          default:
+            subtitle = type.charAt(0).toUpperCase() + type.slice(1)
+            break;
+        }
+        return {
+          title,
+          subtitle,
+        }
+      },
+    },
+
     components: {
       input: (props: ObjectInputProps) => LinkInput({...props, value: props.value as LinkValue}),
     },

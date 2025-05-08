@@ -4,10 +4,13 @@ import {
   FormFieldValidationStatus,
   ObjectInputMember,
   ObjectInputProps,
+  PatchEvent,
+  set,
 } from 'sanity'
 import styled from 'styled-components'
 
 import {LinkValue} from '../types'
+import {useEffect} from 'react'
 
 const ValidationErrorWrapper = styled(Box)`
   contain: size;
@@ -30,6 +33,18 @@ const FullWidthStack = styled(Stack)`
 export function LinkInput(props: ObjectInputProps<LinkValue>) {
   const [textField, typeField, linkField, ...otherFields] = props.members as FieldMember[]
 
+  const disableText = props.schemaType.options?.disableText
+
+  // Set a default value for text if disableText is true
+  useEffect(() => {
+    console.log('changing?')
+    if (disableText && (!props.value?.text || props.value.text === '')) {
+      // Create a patch to set a placeholder value
+      const patch = PatchEvent.from(set('_disabled_', ['text']))
+      props.onChange(patch)
+    }
+  }, [disableText, props.value, props.onChange])
+
   const {
     field: {
       validation: linkFieldValidation,
@@ -49,21 +64,27 @@ export function LinkInput(props: ObjectInputProps<LinkValue>) {
     renderPreview: props.renderPreview,
   }
 
+  console.log(textField.field.validation)
+
   return (
     <Stack space={4}>
-      <ObjectInputMember
-        member={{
-          ...textField,
-          field: {
-            ...textField.field,
-            schemaType: {
-              ...textField.field.schemaType,
-              title: textField.field.schemaType.title,
+      {/* Only render text field if not disabled */}
+
+      {!disableText && (
+        <ObjectInputMember
+          member={{
+            ...textField,
+            field: {
+              ...textField.field,
+              schemaType: {
+                ...textField.field.schemaType,
+                title: textField.field.schemaType.title,
+              },
             },
-          },
-        }}
-        {...renderProps}
-      />
+          }}
+          {...renderProps}
+        />
+      )}
 
       <Stack space={3}>
         <Text as="label" weight="medium" size={1}>
@@ -114,7 +135,6 @@ export function LinkInput(props: ObjectInputProps<LinkValue>) {
             />
           </FullWidthStack>
         </Flex>
-        
 
         {/* Render the description of the selected link field, if any */}
         {description && (

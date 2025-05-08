@@ -1,4 +1,4 @@
-import {ObjectSchemaType, SlugDefinition, SlugInputProps, SlugOptions} from 'sanity'
+import {ObjectSchemaType, SlugDefinition, SlugInputProps, SlugOptions, type FieldDefinition} from 'sanity'
 
 interface ExtendedSlugOptions extends SlugOptions {
   url: string
@@ -21,6 +21,11 @@ export interface LinkFieldPluginOptions {
   linkableSchemaTypes: string[];
   enableLinkParameters?: boolean,
   enableAnchorLinks?: boolean,
+  customFields?: FieldDefinition[]
+}
+
+export interface LinkFieldOptions {
+  disableText?: boolean
 }
 
 export interface CustomizableLink {
