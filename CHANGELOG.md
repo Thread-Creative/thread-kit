@@ -1,7 +1,7 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [1.3.2] - 2025-05-08
+## [1.4.0] - 2025-05-08
 ### Added
 - Add customFields option to the plugin to add extra fields globally
 - Added options: {disableText: true } to individual schema to optionally remove text input
