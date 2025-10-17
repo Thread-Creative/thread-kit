@@ -17,6 +17,7 @@ import {FormBuilderPluginOptions} from './types'
 /* ------------- Character Input, Link Field and helper objects ------------- */
 export {CharacterCountInput} from './components/CharacterCountInput'
 export {linkField} from './schemas/objects/linkField'
+export {noteField} from './schemas/objects/noteField'
 export {defineNote, defineSlug} from './utils'
 
 /* ------------------------ Form Builder Plugin below ----------------------- */

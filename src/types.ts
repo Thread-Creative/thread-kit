@@ -1,4 +1,14 @@
-import {ObjectSchemaType, SlugDefinition, SlugInputProps, SlugOptions, type FieldDefinition} from 'sanity'
+import {
+  ObjectSchemaType,
+  SlugDefinition,
+  SlugInputProps,
+  SlugOptions,
+  type FieldDefinition,
+  type ObjectInputProps,
+  type StringInputProps,
+  type StringSchemaType,
+  type StringOptions,
+} from 'sanity'
 
 interface ExtendedSlugOptions extends SlugOptions {
   url: string
@@ -16,11 +26,10 @@ export interface ExtendedSlugInputProps extends SlugInputProps {
   folder?: string
 }
 
-
 export interface LinkFieldPluginOptions {
-  linkableSchemaTypes: string[];
-  enableLinkParameters?: boolean,
-  enableAnchorLinks?: boolean,
+  linkableSchemaTypes: string[]
+  enableLinkParameters?: boolean
+  enableAnchorLinks?: boolean
   customFields?: FieldDefinition[]
 }
 
@@ -58,24 +67,35 @@ export interface PhoneLink {
   phone?: string
 }
 
-export type LinkValue = {
-  _key?: string
-  _type?: 'link'
-  text?: string
-} & (InternalLink | ExternalLink | EmailLink | PhoneLink)
-
+export type LinkValue = {_key?: string; _type?: 'link'; text?: string} & (
+  | InternalLink
+  | ExternalLink
+  | EmailLink
+  | PhoneLink
+)
 
 export type SanityLink = {
-  text: string;
-  link: string;
-  blank?: boolean;
-  parameters?: string;
-  anchor?: string;
-  type?: string;
-};
+  text: string
+  link: string
+  blank?: boolean
+  parameters?: string
+  anchor?: string
+  type?: string
+}
 
 export interface FormBuilderPluginOptions {
-  enableModule?: boolean;
-  additionalFieldTypes?: {title: string, value: string}[];
-  additionalSelectPresets?: {title: string, value: string}[];
+  enableModule?: boolean
+  additionalFieldTypes?: {title: string; value: string}[]
+  additionalSelectPresets?: {title: string; value: string}[]
 }
+
+export interface noteSchemaType extends StringSchemaType {
+  options?: StringOptions & {
+    icon?: React.ReactNode
+    headline?: string
+    message?: any
+    tone?: 'default' | 'transparent' | 'primary' | 'positive' | 'caution' | 'critical'
+  }
+}
+
+export type noteInputProps = StringInputProps<noteSchemaType>
