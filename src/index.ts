@@ -15,13 +15,14 @@ import formModule from './schemas/objects/module/formModule'
 import {FormBuilderPluginOptions} from './types'
 
 /* ------------- Character Input, Link Field and helper objects ------------- */
-export {CharacterCountInput} from './components/CharacterCountInput'
-export {linkField} from './schemas/objects/linkField'
-export {noteField} from './schemas/objects/noteField'
-export {defineNote, defineSlug} from './utils'
+/** @public */ export {CharacterCountInput} from './components/CharacterCountInput'
+/** @public */ export {linkField} from './schemas/objects/linkField'
+/** @public */ export {defineSlug} from './utils'
+/** @public */ export type {SlugParams, SlugFieldOverrides} from './types'
 
 /* ------------------------ Form Builder Plugin below ----------------------- */
 
+/** @public */
 export const FormBuilderPlugin = definePlugin<FormBuilderPluginOptions | void>((props) => {
   const {
     enableModule = false,
@@ -65,11 +66,13 @@ export const FormBuilderPlugin = definePlugin<FormBuilderPluginOptions | void>((
   }
 })
 
+/** @public */
 export const FormBuilderEnums = {
   documents: FormDocumentTypeEnum.enum,
   fields: FormFieldEnum.enum,
 }
 
+/** @public */
 export type FormBuilderEnumsType = {
   documents: z.infer<typeof FormDocumentTypeEnum>
   fields: z.infer<typeof FormFieldEnum>

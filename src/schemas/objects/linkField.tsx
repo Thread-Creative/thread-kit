@@ -5,6 +5,7 @@ import {LinkTypeInput} from '../../components/LinkTypeInput'
 import {LinkInput} from '../../components/LinkInput'
 import {LinkIcon} from '@sanity/icons'
 
+/** @public */
 export const linkField = definePlugin<LinkFieldPluginOptions | void>((props) => {
   const {
     linkableSchemaTypes = ['page'],
@@ -260,7 +261,12 @@ export const linkField = definePlugin<LinkFieldPluginOptions | void>((props) => 
     },
 
     components: {
-      input: (props: ObjectInputProps) => LinkInput({...props, value: props.value as LinkValue}),
+      input: (props: ObjectInputProps<LinkValue>) =>
+        LinkInput({
+          ...props,
+          value: props.value as LinkValue,
+          compareValue: props.compareValue as LinkValue | undefined,
+        }),
     },
   }
 

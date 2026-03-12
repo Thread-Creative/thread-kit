@@ -1,39 +1,37 @@
+import React from 'react'
 import {Stack} from '@sanity/ui'
-import {StringInputProps, StringOptions, StringSchemaType} from 'sanity'
+import type {StringInputProps} from 'sanity'
 
-interface ExtendedStringSchemaType extends StringSchemaType {
-  options?: StringOptions & {
-    maxLength?: number
-  }
-}
-
-type Props = StringInputProps<ExtendedStringSchemaType>
-
-export function CharacterCountInput(props: Props) {
-  //const maxLength = props.schemaType.options?.maxLength || 160
-  const maxLength =
-    (props?.schemaType?.validation as any[])?.[0]?._rules?.find((item: any) => item.flag === 'max')
-      ?.constraint ?? 160
-
-  return (
-    <Stack space={3}>
-      <div>
-        <div
-          style={{
-            display: 'inline-block',
-            padding: '0.15rem',
-            paddingLeft: '0.25rem',
-            paddingRight: '0.25rem',
-            borderRadius: '.2rem',
-            fontSize: '0.75rem',
-            border: `${props.value?.length && props.value?.length > maxLength ? '1px solid #f76d5f' : '1px solid'}`,
-          }}
-        >
-          {props.value?.length ? props.value.length : '0'}/{maxLength}
+/**
+ * Returns a character count input component for use as a string field's input.
+ * Set `components.input` to CharacterCountInput(maxCount), e.g. CharacterCountInput(70).
+ * @param maxCount - Maximum character count to display (and used for overflow styling). Default 160.
+ * @public
+ */
+export function CharacterCountInput(maxCount: number = 160) {
+  function CharacterCountInputComponent(props: StringInputProps): React.ReactElement {
+    return (
+      <Stack space={3}>
+        <div>
+          <div
+            style={{
+              display: 'inline-block',
+              padding: '0.15rem',
+              paddingLeft: '0.25rem',
+              paddingRight: '0.25rem',
+              borderRadius: '.2rem',
+              fontSize: '0.75rem',
+              border: `${props.value?.length && props.value.length > maxCount ? '1px solid #f76d5f' : '1px solid'}`,
+            }}
+          >
+            {props.value?.length ? props.value.length : '0'}/{maxCount}
+          </div>
         </div>
-      </div>
 
-      {props.renderDefault(props)}
-    </Stack>
-  )
+        {props.renderDefault(props)}
+      </Stack>
+    )
+  }
+  CharacterCountInputComponent.displayName = 'CharacterCountInput'
+  return CharacterCountInputComponent
 }

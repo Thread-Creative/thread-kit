@@ -1,7 +1,7 @@
 import {ChevronDownIcon} from '@sanity/icons'
 import {Button, Menu, MenuButton, MenuItem} from '@sanity/ui'
 import {AtSignIcon, GlobeIcon, LinkIcon, PhoneIcon} from 'lucide-react'
-import {ComponentType} from 'react'
+import React, {ComponentType} from 'react'
 import {set, type StringInputProps} from 'sanity'
 import styled from 'styled-components'
 
@@ -46,7 +46,7 @@ export function LinkTypeInput({
   linkableSchemaTypes,
 }: StringInputProps & {
   linkableSchemaTypes: LinkFieldPluginOptions['linkableSchemaTypes']
-}) {
+}): React.ReactElement {
   const linkTypes = [
     // Disable internal links if not enabled for any schema types
     ...defaultLinkTypes.filter(
@@ -58,13 +58,12 @@ export function LinkTypeInput({
 
   return (
     <MenuButton
-    
       button={
         <LinkTypeButton
           type="button"
           mode="ghost"
-          icon={selectedType.icon}
-          iconRight={ChevronDownIcon}
+          icon={<selectedType.icon />}
+          iconRight={<ChevronDownIcon />}
           title="Select link type"
           aria-label={`Select link type (currently: ${selectedType.title})`}
         />
@@ -76,7 +75,7 @@ export function LinkTypeInput({
             <LinkTypeMenuItem
               key={type.value}
               text={type.title}
-              icon={type.icon}
+              icon={<type.icon />}
               onClick={() => {
                 onChange(set(type.value))
               }}

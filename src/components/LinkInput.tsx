@@ -10,7 +10,7 @@ import {
 import styled from 'styled-components'
 
 import {LinkValue} from '../types'
-import {useEffect} from 'react'
+import React, {useEffect} from 'react'
 
 const ValidationErrorWrapper = styled(Box)`
   contain: size;
@@ -30,7 +30,7 @@ const FullWidthStack = styled(Stack)`
  *
  * The rest of the fields ("blank" and "advanced") are rendered as usual.
  */
-export function LinkInput(props: ObjectInputProps<LinkValue>) {
+export function LinkInput(props: ObjectInputProps<LinkValue>): React.ReactElement {
   const [textField, typeField, linkField, ...otherFields] = props.members as FieldMember[]
 
   const disableText = props.schemaType.options?.disableText

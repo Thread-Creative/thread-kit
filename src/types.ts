@@ -6,8 +6,6 @@ import {
   type FieldDefinition,
   type ObjectInputProps,
   type StringInputProps,
-  type StringSchemaType,
-  type StringOptions,
 } from 'sanity'
 
 interface ExtendedSlugOptions extends SlugOptions {
@@ -16,10 +14,25 @@ interface ExtendedSlugOptions extends SlugOptions {
   locked?: boolean | (({document}: any) => boolean)
 }
 
-export type SlugParams = Omit<SlugDefinition, 'type' | 'options' | 'name'> & {
-  name?: string
-  options?: ExtendedSlugOptions
+/** Props that can be set on a field when used inside an object (e.g. group, fieldset). Sanity's SlugDefinition doesn't include these in its type, but defineField accepts them. */
+/** @public */
+export interface SlugFieldOverrides {
+  /** Assign this field to one or more field groups. Use group names defined on the parent object's `groups`. */
+  group?: string | string[]
+  /** Assign this field to a fieldset. Use the fieldset name from the parent object's `fieldsets`. */
+  fieldset?: string
 }
+
+/**
+ * Parameters for defineSlug(). Extends Sanity's SlugDefinition with thread-kit options (url, folder, locked)
+ * and object-field props (group, fieldset) so you can pass the same props you would to defineField for a slug.
+ * @public
+ */
+export type SlugParams = Omit<SlugDefinition, 'type' | 'options' | 'name'> &
+  SlugFieldOverrides & {
+    name?: string
+    options?: ExtendedSlugOptions
+  }
 
 export interface ExtendedSlugInputProps extends SlugInputProps {
   url: string
@@ -89,13 +102,3 @@ export interface FormBuilderPluginOptions {
   additionalSelectPresets?: {title: string; value: string}[]
 }
 
-export interface noteSchemaType extends StringSchemaType {
-  options?: StringOptions & {
-    icon?: React.ReactNode
-    headline?: string
-    message?: any
-    tone?: 'default' | 'transparent' | 'primary' | 'positive' | 'caution' | 'critical'
-  }
-}
-
-export type noteInputProps = StringInputProps<noteSchemaType>

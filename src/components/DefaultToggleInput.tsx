@@ -1,5 +1,5 @@
 import {Box, Flex, Switch, Text, Tooltip} from '@sanity/ui'
-import {useCallback} from 'react'
+import React, {useCallback} from 'react'
 import {type ObjectItemProps, PatchEvent, set, useFormValue} from 'sanity'
 import {useDocumentPane} from 'sanity/structure'
 
@@ -9,7 +9,7 @@ export interface SelectOption {
   optionValue?: string
 }
 
-export function DefaultToggleItem(props: ObjectItemProps<SelectOption>) {
+export function DefaultToggleItem(props: ObjectItemProps<SelectOption>): React.ReactElement {
   const {value, path} = props
 
   // Item props don't have `onChange`, but we can get it from useDocumentPane()
